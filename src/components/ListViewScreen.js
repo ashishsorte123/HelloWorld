@@ -7,7 +7,11 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {connect} from 'react-redux';
-import {imageSearchBoxValueChanged, getImageListFromAPI} from '../actions';
+import {
+  imageSearchBoxValueChanged,
+  getImageListFromAPI,
+  toggleImageListLoader,
+} from '../actions';
 import {ListCard, TextField} from './common';
 import axios from 'axios';
 
@@ -17,7 +21,8 @@ class ListViewScreen extends Component {
     showLoader: false,
   };
   renderLoader() {
-    if (this.state.showLoader) {
+    // if (this.state.showLoader) {
+    if (this.props.showLoader) {
       return (
         <ActivityIndicator
           size="large"
@@ -52,7 +57,9 @@ class ListViewScreen extends Component {
   componentDidMount() {
     // this.getImagesAPICall();
     // console.log(this.props);
+    // this.props.toggleImageListLoader(true);
     this.props.getImageListFromAPI();
+    // this.props.toggleImageListLoader(false);
   }
   render() {
     const {ViewStyle, HeaderViewStyle} = styles;
@@ -70,14 +77,15 @@ class ListViewScreen extends Component {
           placeholder="Search"
           onChangeText={value => {
             // console.log('Value of text input changed to:', value);
-            this.props.imageSearchBoxValueChanged(value);
+            this.props.imageSearchBoxValueChanged(this.props.image_list, value);
           }}
           value={this.props.image_search_value}
           // style={{borderColor: 'pink', width: '90%'}}
         />
         <FlatList
-          //   data={this.state.imageList}
-          data={this.props.image_list}
+        //   data={this.state.imageList}
+        //   data={this.props.image_list}
+          data={this.props.filtered_image_list}
           renderItem={item => {
             // console.log(item, item.item, item.item.owner)
             return (
@@ -119,10 +127,13 @@ const mapStateToProps = state => {
   return {
     image_search_value: state.imageListing.image_search,
     image_list: state.imageListing.image_list,
+    showLoader: state.imageListing.showLoader,
+    filtered_image_list: state.imageListing.filtered_image_list,
   };
 };
 
 export default connect(mapStateToProps, {
   imageSearchBoxValueChanged,
   getImageListFromAPI,
+  toggleImageListLoader,
 })(ListViewScreen);
