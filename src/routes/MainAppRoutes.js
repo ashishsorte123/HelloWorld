@@ -24,12 +24,12 @@ function Tab1Stack() {
         options={({navigation, route}) => ({
           headerTitle: 'Home',
           headerStyle: {backgroundColor: '#9C3940'},
+          headerTintColor: 'white',
           headerTitleAlign: 'center',
           headerRight: () => (
             <TouchableOpacity
               onPress={() => navigation.navigate('Next Screen')}>
-              {/* <Text style={{color: 'white'}}>Next</Text> */}
-              <Text>Next</Text>
+              <Text style={{color: 'white'}}>Next</Text>
             </TouchableOpacity>
           ),
         })}
@@ -45,7 +45,11 @@ function Tab1Stack() {
 
 function Tab2Stack() {
   return (
-    <Tab2StackNav.Navigator>
+    <Tab2StackNav.Navigator
+      screenOptions={{
+        headerStyle: {backgroundColor: '#9C3940'},
+        headerTintColor: 'white',
+      }}>
       <Tab2StackNav.Screen name="Tab2 Screen1" component={Tab2Screen1} />
       <Tab2StackNav.Screen name="Tab2 Screen2" component={Tab2Screen2} />
     </Tab2StackNav.Navigator>
@@ -55,7 +59,12 @@ function Tab2Stack() {
 function MainAppRoutes() {
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={{headerShown: false}}>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarStyle: {backgroundColor: '#9C3940'},
+          tabBarActiveTintColor: 'white',
+        }}>
         <Tab.Screen name="Image List" component={Tab1Stack} />
         <Tab.Screen name="Tab 2" component={Tab2Stack} />
       </Tab.Navigator>
