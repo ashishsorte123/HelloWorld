@@ -69,11 +69,11 @@ class ListViewScreen extends Component {
     }
     return (
       <View style={ViewStyle}>
-        <View style={HeaderViewStyle}>
+        {/* <View style={HeaderViewStyle}>
           <Text style={{fontSize: 20, fontWeight: 'bold', color: 'white'}}>
             Image Gallery
           </Text>
-        </View>
+        </View> */}
         <TextField
           placeholder="Search"
           onChangeText={value => {

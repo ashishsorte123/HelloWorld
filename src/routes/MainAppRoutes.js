@@ -23,11 +23,12 @@ function Tab1Stack() {
         component={ListViewScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Home',
-          headerStyle: {backgroundColor: 'lightgrey'},
+          headerStyle: {backgroundColor: '#9C3940'},
           headerTitleAlign: 'center',
           headerRight: () => (
             <TouchableOpacity
               onPress={() => navigation.navigate('Next Screen')}>
+              {/* <Text style={{color: 'white'}}>Next</Text> */}
               <Text>Next</Text>
             </TouchableOpacity>
           ),
