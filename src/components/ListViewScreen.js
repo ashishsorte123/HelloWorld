@@ -5,6 +5,7 @@ import {
   StyleSheet,
   FlatList,
   ActivityIndicator,
+  TouchableOpacity,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
@@ -82,9 +83,19 @@ class ListViewScreen extends Component {
           value={this.props.image_search_value}
           // style={{borderColor: 'pink', width: '90%'}}
         />
+        <TouchableOpacity
+          onPress={() => {
+            console.log(
+              'Lets navigate to the next screen using this.props',
+              this.props,
+            );
+            this.props.navigation.navigate('Image Details');
+          }}>
+          <Text>Go to details screen</Text>
+        </TouchableOpacity>
         <FlatList
-        //   data={this.state.imageList}
-        //   data={this.props.image_list}
+          //   data={this.state.imageList}
+          //   data={this.props.image_list}
           data={this.props.filtered_image_list}
           renderItem={item => {
             // console.log(item, item.item, item.item.owner)
@@ -92,6 +103,11 @@ class ListViewScreen extends Component {
               <ListCard
                 image={item.item.download_url}
                 ownerName={item.item.author}
+                detailsOnPress={() => {
+                  this.props.navigation.navigate('Image Details', {
+                    image_id: item.item.id,
+                  });
+                }}
               />
             );
           }}
