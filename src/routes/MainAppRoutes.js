@@ -80,7 +80,7 @@ function MainAppRoutes() {
         screenOptions={{
           headerShown: false,
         }}>
-        <MainStack.Screen name="Splash Screen" component={SplashScreen} />
+        <MainStack.Screen name="Splash" component={SplashScreen} />
         <MainStack.Screen name="onBoarding" component={onBoarding} />
         <MainStack.Screen name="HomeScreen" component={TabStack} />
       </MainStack.Navigator>

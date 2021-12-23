@@ -60,7 +60,7 @@ export const getImageListFromAPI = nav => {
           payload: false,
         });
         console.log('nav:', nav);
-        nav.navigate('Tab Screens');
+        nav.navigate('HomeScreen');
       })
       .catch(error => {
         dispatch({

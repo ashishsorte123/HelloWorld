@@ -7,11 +7,23 @@ import AsyncStore from '../extras/AsyncStore';
 class SplashScreen extends Component {
   componentDidMount() {
     const asyncStore = new AsyncStore();
-    asyncStore.storeData('OpenTimes', '0');
-    asyncStore
-      .getData('openTimes')
-      .then(value => console.log('Open times value:', value));
-    this.props.getImageListFromAPI(this.props.navigation);
+    asyncStore.getData('openTimes').then(value => {
+      console.log('VALUE', value);
+      if (value) {
+        console.log(
+          'Opening 2nd time or later so value is created in async store during first time ',
+          this.props.getImageListFromAPI(this.props.navigation),
+        );
+      } else {
+        console.log(
+          'Opening first time so no value is store in async store !!!',
+        );
+        asyncStore.storeData('openTimes', '1');
+        this.props.navigation.navigate('onBoarding');
+      }
+    });
+
+    // this.props.getImageListFromAPI(this.props.navigation);
   }
   render() {
     return (
