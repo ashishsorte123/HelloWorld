@@ -59,7 +59,7 @@ export const getImageListFromAPI = nav => {
           type: TOGGLE_IMAGELIST_LOADER,
           payload: false,
         });
-        // console.log('Nav in action function: ', nav);
+        console.log('nav:', nav);
         nav.navigate('Tab Screens');
       })
       .catch(error => {

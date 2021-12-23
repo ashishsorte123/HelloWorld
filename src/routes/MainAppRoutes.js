@@ -81,7 +81,8 @@ function MainAppRoutes() {
           headerShown: false,
         }}>
         <MainStack.Screen name="Splash Screen" component={SplashScreen} />
-        <MainStack.Screen name="Tab Screens" component={TabStack} />
+        <MainStack.Screen name="onBoarding" component={onBoarding} />
+        <MainStack.Screen name="HomeScreen" component={TabStack} />
       </MainStack.Navigator>
     </NavigationContainer>
   );
