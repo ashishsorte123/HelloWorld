@@ -36,7 +36,7 @@ export const toggleImageListLoader = show => {
   };
 };
 
-export const getImageListFromAPI = () => {
+export const getImageListFromAPI = nav => {
   console.log('In get image API');
   return dispatch => {
     dispatch({
@@ -59,6 +59,8 @@ export const getImageListFromAPI = () => {
           type: TOGGLE_IMAGELIST_LOADER,
           payload: false,
         });
+        // console.log('Nav in action function: ', nav);
+        nav.navigate('Tab Screens');
       })
       .catch(error => {
         dispatch({

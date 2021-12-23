@@ -8,9 +8,12 @@ import NextScreen from '../components/NextScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Tab2Screen1 from '../components/Tab2Screen1';
 import Tab2Screen2 from '../components/Tab2Screen2';
+import onBoarding from '../components/onBoarding';
+import SplashScreen from '../components/SplashScreen';
 
 const Tab1StackNav = createNativeStackNavigator();
 const Tab2StackNav = createNativeStackNavigator();
+const MainStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function Tab1Stack() {
@@ -56,18 +59,30 @@ function Tab2Stack() {
   );
 }
 
+function TabStack() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {backgroundColor: '#9C3940'},
+        tabBarActiveTintColor: 'white',
+      }}>
+      <Tab.Screen name="Image List" component={Tab1Stack} />
+      <Tab.Screen name="Tab 2" component={Tab2Stack} />
+    </Tab.Navigator>
+  );
+}
+
 function MainAppRoutes() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
+      <MainStack.Navigator
         screenOptions={{
           headerShown: false,
-          tabBarStyle: {backgroundColor: '#9C3940'},
-          tabBarActiveTintColor: 'white',
         }}>
-        <Tab.Screen name="Image List" component={Tab1Stack} />
-        <Tab.Screen name="Tab 2" component={Tab2Stack} />
-      </Tab.Navigator>
+        <MainStack.Screen name="Splash Screen" component={SplashScreen} />
+        <MainStack.Screen name="Tab Screens" component={TabStack} />
+      </MainStack.Navigator>
     </NavigationContainer>
   );
 }
